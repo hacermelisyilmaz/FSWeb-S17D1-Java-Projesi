@@ -25,19 +25,22 @@ public class AnimalController {
     }
 
     @PostMapping
-    public void addAnimal(@RequestBody int id, @RequestBody String name) {
+    public Animal addAnimal(@RequestBody int id, @RequestBody String name) {
+        Animal animal = new Animal(id, name);
         if (animals.containsKey(id)) System.out.println("An animal with this ID already exists: " + id);
-        else animals.put(id, new Animal(id, name));
+        else animals.put(id, animal);
+        return animal;
     }
 
     @PutMapping("/{id}")
-    public void updateAnimal(@PathVariable int id, @RequestBody Animal animal) {
+    public Animal updateAnimal(@PathVariable int id, @RequestBody Animal animal) {
         if (animals.containsKey(id)) animals.put(animal.getId(), animal);
+        return animal;
     }
 
     @DeleteMapping("/{id}")
-    public void removeAnimal(@PathVariable int id) {
+    public Animal removeAnimal(@PathVariable int id) {
         if (!animals.containsKey(id)) System.out.println("An animal with this ID does not exist. Deletion not necessary.");
-        animals.remove(id);
+        return animals.remove(id);
     }
 }
