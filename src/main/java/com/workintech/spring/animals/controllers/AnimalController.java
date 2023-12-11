@@ -29,4 +29,9 @@ public class AnimalController {
         if (animals.containsKey(id)) System.out.println("An animal with this ID already exists: " + id);
         else animals.put(id, new Animal(id, name));
     }
+
+    @PutMapping("/{id}")
+    public void updateAnimal(@PathVariable int id, @RequestBody Animal animal) {
+        if (animals.containsKey(id)) animals.put(animal.getId(), animal);
+    }
 }
