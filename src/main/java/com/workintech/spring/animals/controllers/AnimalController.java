@@ -34,4 +34,10 @@ public class AnimalController {
     public void updateAnimal(@PathVariable int id, @RequestBody Animal animal) {
         if (animals.containsKey(id)) animals.put(animal.getId(), animal);
     }
+
+    @DeleteMapping("/{id}")
+    public void removeAnimal(@PathVariable int id) {
+        if (!animals.containsKey(id)) System.out.println("An animal with this ID does not exist. Deletion not necessary.");
+        animals.remove(id);
+    }
 }
