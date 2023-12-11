@@ -16,4 +16,11 @@ public class AnimalController {
     public List<Animal> getAnimals() {
         return animals.values().stream().toList();
     }
+
+    @GetMapping("/{id}")
+    public Animal getAnimal(@PathVariable int id) {
+        if (animals.containsKey(id)) return animals.get(id);
+        else System.out.println("An animal with this ID does not exist: " + id);
+        return null;
+    }
 }
