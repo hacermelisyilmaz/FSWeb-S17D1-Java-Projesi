@@ -23,4 +23,10 @@ public class AnimalController {
         else System.out.println("An animal with this ID does not exist: " + id);
         return null;
     }
+
+    @PostMapping
+    public void addAnimal(@RequestBody int id, @RequestBody String name) {
+        if (animals.containsKey(id)) System.out.println("An animal with this ID already exists: " + id);
+        else animals.put(id, new Animal(id, name));
+    }
 }
